@@ -2,6 +2,7 @@ import NoProject from "./components/NoProject";
 import NewProject from "./components/NewProject";
 import SideBar from "./components/SideBar";
 import { useState } from "react";
+import ProjectPage from "./components/ProjectPage";
 
 function App() {
   const [projectsState, setProjectsState] = useState({
@@ -35,12 +36,11 @@ function App() {
     content = <NewProject createProject={handleCreateProject}/>;
   } else if (projectsState.selectedProjectsId === undefined){
     content = <NoProject addProject={handleAddProject} />
-  } else {content = <p>YOUR PROJECTS:</p> 
-  console.log("PROJECTS", projectsState.projects);
+  } else {content = <ProjectPage projectsList={projectsState.projects}/>
 }
   return (
     <main className="h-screen my-8 flex gap-8">
-      <SideBar addProject={handleAddProject} title="Learning React" />
+      <SideBar addProject={handleAddProject} projectsList={projectsState.projects} title="Learning React" />
       {content}
     </main>
   );
