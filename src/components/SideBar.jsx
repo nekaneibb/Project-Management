@@ -9,14 +9,14 @@ export default function SideBar({ title, addProject, projectsList }) {
       </h1>
       <Button onClick={addProject}>+ Add Project</Button>
       <ul className="mt-8">
-        {projectsList.map((project, index) => (
-          <li
-            className="mt-4"
-            key={index}
+        {projectsList.map((project) => (
+          <button
+            className="w-full text-left px-2 py-1 rounded-sm my-1 text-stone-400 hover:text-stone-200 hover:bg-stone-800"
+            key={project.id}
             onClick={() => handleProjectClick(project)}
           >
             {project.title}
-          </li>
+          </button>
         ))}
       </ul>
     </aside>
