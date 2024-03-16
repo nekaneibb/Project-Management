@@ -56,6 +56,7 @@ function App() {
       ...prevState,
       projects: updatedProjects,
     }));
+    setProjectSelected({})
   }
 
   const selectedProject = projectsState.projects.find(

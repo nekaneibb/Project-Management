@@ -1,4 +1,5 @@
 export default function SelectedProject({ projectsSelected, onDeleteProject }) {
+    
   const formattedDate = new Date(projectsSelected.date).toLocaleDateString(
     "es-UE",
     {
