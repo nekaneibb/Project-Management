@@ -1,5 +1,8 @@
-export default function SelectedProject({ projectsSelected, onDeleteProject }) {
-    
+import { useState } from "react";
+import Task from "./Task";
+import NoProject from "./NoProject";
+
+export default function SelectedProject({ projectsSelected, onDeleteProject, onAddTask, onDeleteTask, tasksList }) {
   const formattedDate = new Date(projectsSelected.date).toLocaleDateString(
     "es-UE",
     {
@@ -8,6 +11,7 @@ export default function SelectedProject({ projectsSelected, onDeleteProject }) {
       day: "numeric",
     }
   );
+
   return (
     <div className="w-[35rem] mt-16">
       <header className="pb-4 mb-4 border-b-2 border-stone-300">
@@ -24,7 +28,7 @@ export default function SelectedProject({ projectsSelected, onDeleteProject }) {
           {projectsSelected.description}
         </p>
       </header>
-      <p></p>
+      <Task onAdd={onAddTask} onDelete={onDeleteTask} taskList={tasksList} ></Task>
     </div>
   );
 }

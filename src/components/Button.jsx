@@ -1,4 +1,4 @@
-export default function Button({ addProject, children, ...props }) {
+export default function Button({ addProject, handleCreateTask, children, ...props }) {
   return (
     <p>
       <button
