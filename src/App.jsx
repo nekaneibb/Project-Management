@@ -8,21 +8,38 @@ function App() {
   const [projectsState, setProjectsState] = useState({
     selectedProjectsId: undefined,
     projects: [],
-    task: [],
   });
   const [projectSelected, setProjectSelected] = useState({});
 
   function handleAddTask(taskData) {
+    const taskId = Math.random();
+    const newTask = {
+      text: taskData,
+      id: taskId,
+    };
+    setProjectSelected((prevProject) => ({
+      ...prevProject,
+      tasks: [...prevProject.tasks, newTask],
+    }));
+
     setProjectsState((prevState) => {
-      const taskId = Math.random();
-      const newTask = {
-        text: taskData,
-        projectId: prevState.selectedProjectsId,
-        id: taskId,
-      };
+      const updatedProjects = prevState.projects.map((project) => {
+        if (project.id === projectSelected.id) {
+          const newTask = {
+            text: taskData,
+            id: Math.random(),
+          };
+          return {
+            ...project,
+            tasks: [...project.tasks, newTask],
+          };
+        }
+        return project;
+      });
+
       return {
         ...prevState,
-        task: [...prevState.task, newTask],
+        projects: updatedProjects,
       };
     });
   }
@@ -53,6 +70,7 @@ function App() {
       const newProject = {
         ...projectData,
         id: projectId,
+        tasks: [],
       };
       setProjectSelected(newProject);
       return {
@@ -108,7 +126,7 @@ function App() {
         onDeleteProject={handleDeleteProject}
         onAddTask={handleAddTask}
         onDeleteTask={handleDeleteTask}
-        tasksList={projectsState.task}
+        tasksList={projectSelected.tasks}
       />
     );
   }

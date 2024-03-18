@@ -16,7 +16,7 @@ export default function Task({ onAdd, onDelete, taskList }) {
   return (
     <section>
       <h2 className="text-2xl font-bold text-stone-700 mb-4">Tasks:</h2>
-      {taskList.length === 0 ? (
+      {!taskList || taskList.length === 0 ? (
         <p className="text-stone-800 mb-4">
           This project doesn't have any task yet
         </p>
